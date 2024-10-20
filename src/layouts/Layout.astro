@@ -1,50 +1,106 @@
 ---
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Catalina Romo, estilista." />
+    <meta name="viewport" content="width=device-width" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+  @font-face {
+    font-family: "Cinzel";
+    src: url("/fonts/cinzel/Cinzel-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Cinzel";
+    src: url("/fonts/cinzel/Cinzel-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Cinzel";
+    src: url("/fonts/cinzel/Cinzel-Black.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Cinzel";
+    src: url("/fonts/cinzel/Cinzel-ExtraBold.ttf") format("truetype");
+    font-weight: 800;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Cinzel";
+    src: url("/fonts/cinzel/Cinzel-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Cinzel";
+    src: url("/fonts/cinzel/Cinzel-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Playfair";
+    src: url("/fonts/playfair/PlayfairDisplay-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Playfair";
+    src: url("/fonts/playfair/PlayfairDisplay-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Playfair";
+    src: url("/fonts/playfair/PlayfairDisplay-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Playfair";
+    src: url("/fonts/playfair/PlayfairDisplay-Italic.ttf") format("truetype");
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: "Playfair";
+    src: url("/fonts/playfair/PlayfairDisplay-ExtraBold.ttf") format("truetype");
+    font-weight: 800;
+    font-style: normal;
+  }
 </style>

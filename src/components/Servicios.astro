@@ -1,0 +1,54 @@
+---
+const SERVICIOS = [
+  {
+    title: "Corte de Cabello",
+    img: "/corte-de-cabello.webp",
+    alt: "Corte de Cabello",
+    description: "Descripción del servicio",
+  },
+  {
+    title: "Corte de Cabello",
+    img: "/corte-de-cabello.webp",
+    alt: "Corte de Cabello",
+    description: "Descripción del servicio",
+  },
+  {
+    title: "Corte de Cabello",
+    img: "/corte-de-cabello.webp",
+    alt: "Corte de Cabello",
+    description: "Descripción del servicio",
+  },
+  {
+    title: "Corte de Cabello",
+    img: "/corte-de-cabello.webp",
+    alt: "Corte de Cabello",
+    description: "Descripción del servicio",
+  },
+];
+---
+
+<section class="max-w-7xl m-auto -mt-32">
+  <h2
+    class="font-cinzel uppercase text-center py-5 text-4xl font-normal bg-white tracking-widest"
+  >
+    Servicios
+  </h2>
+
+  <div class="grid grid-cols-2">
+    {
+      SERVICIOS.map(({ img, alt, description, title }) => (
+        <div class="grid grid-cols-2">
+          <picture class="col-span-1">
+            <img class="aspect-square object-cover" src={img} alt={alt} />
+          </picture>
+          <div class="col-span-1 bg-accent flex flex-col justify-center items-center gap-3">
+            <h3 class="font-cinzel text-xl font-semibold tracking-wider">
+              {title}
+            </h3>
+            <p class="font-playfair font-thin">{description}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
