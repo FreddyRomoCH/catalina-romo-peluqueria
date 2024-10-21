@@ -1,0 +1,89 @@
+---
+const WORK_DONE = [
+  {
+    title: "Titulo Trabajo 1",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corruptrerum eaque nihil architecto ipsum velit vel et porro corporis veroassumenda natus at nobis impedit iusto, eligendi molestiae numquam!",
+    image: "/corte-de-cabello.webp",
+    color: "bg-fondo",
+    columns: "col-span-2",
+  },
+  {
+    title: "Titulo Trabajo 2",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corruptrerum eaque nihil architecto ipsum velit vel et porro corporis veroassumenda natus at nobis impedit iusto, eligendi molestiae numquam!",
+    image: "/corte-de-cabello.webp",
+    color: "bg-accent",
+    columns: "col-span-1",
+  },
+  {
+    title: "Titulo Trabajo 3",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corruptrerum eaque nihil architecto ipsum velit vel et porro corporis veroassumenda natus at nobis impedit iusto, eligendi molestiae numquam!",
+    image: "/corte-de-cabello.webp",
+    color: "bg-fondo",
+    columns: "col-span-1",
+  },
+  {
+    title: "Titulo Trabajo 4",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corruptrerum eaque nihil architecto ipsum velit vel et porro corporis veroassumenda natus at nobis impedit iusto, eligendi molestiae numquam!",
+    image: "/corte-de-cabello.webp",
+    color: "bg-accent",
+    columns: "col-span-1",
+  },
+  {
+    title: "Titulo Trabajo 5",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corruptrerum eaque nihil architecto ipsum velit vel et porro corporis veroassumenda natus at nobis impedit iusto, eligendi molestiae numquam!",
+    image: "/corte-de-cabello.webp",
+    color: "bg-fondo",
+    columns: "col-span-1",
+  },
+  {
+    title: "Titulo Trabajo 6",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corruptrerum eaque nihil architecto ipsum velit vel et porro corporis veroassumenda natus at nobis impedit iusto, eligendi molestiae numquam!",
+    image: "/corte-de-cabello.webp",
+    color: "bg-accent",
+    columns: "col-span-3",
+  },
+];
+---
+
+<section class="max-w-7xl m-auto">
+  <h2
+    class="font-cinzel uppercase text-center py-5 text-4xl font-normal bg-white tracking-widest"
+  >
+    Trabajos Realizados
+  </h2>
+
+  <div class="grid grid-cols-bento gap-3 mb-5">
+    {
+      WORK_DONE.map(({ title, description, image, color, columns }) => (
+        <div class={`p-2 rounded-lg ${color} ${columns}`}>
+          <div class="info flex flex-col justify-between text-center gap-2">
+            <h6 class="font-cinzel text-xl font-semibold tracking-wider">
+              {title}
+            </h6>
+            <p class="font-playfair font-thin">{description}</p>
+            <picture>
+              <img
+                class="object-cover w-full h-80"
+                src={image}
+                alt={`Cover of ${title}`}
+              />
+            </picture>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="flex justify-center">
+    <button
+      class="px-4 py-2 bg-button text-primary rounded font-cinzel text-base font-medium hover:saturate-50 cursor-pointer"
+      >Ver más</button
+    >
+  </div>
+</section>

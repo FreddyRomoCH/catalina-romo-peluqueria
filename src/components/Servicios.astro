@@ -5,24 +5,28 @@ const SERVICIOS = [
     img: "/corte-de-cabello.webp",
     alt: "Corte de Cabello",
     description: "Descripción del servicio",
+    color: "bg-secondary",
   },
   {
     title: "Corte de Cabello",
     img: "/corte-de-cabello.webp",
     alt: "Corte de Cabello",
     description: "Descripción del servicio",
+    color: "bg-button",
   },
   {
     title: "Corte de Cabello",
     img: "/corte-de-cabello.webp",
     alt: "Corte de Cabello",
     description: "Descripción del servicio",
+    color: "bg-secondary",
   },
   {
     title: "Corte de Cabello",
     img: "/corte-de-cabello.webp",
     alt: "Corte de Cabello",
     description: "Descripción del servicio",
+    color: "bg-button",
   },
 ];
 ---
@@ -36,12 +40,14 @@ const SERVICIOS = [
 
   <div class="grid grid-cols-2">
     {
-      SERVICIOS.map(({ img, alt, description, title }) => (
+      SERVICIOS.map(({ img, alt, description, title, color }) => (
         <div class="grid grid-cols-2">
           <picture class="col-span-1">
             <img class="aspect-square object-cover" src={img} alt={alt} />
           </picture>
-          <div class="col-span-1 bg-accent flex flex-col justify-center items-center gap-3">
+          <div
+            class={`col-span-1 flex flex-col justify-center items-center gap-3 ${color}`}
+          >
             <h3 class="font-cinzel text-xl font-semibold tracking-wider">
               {title}
             </h3>

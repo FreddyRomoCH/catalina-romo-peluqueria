@@ -5,15 +5,18 @@ export default {
 		extend: {
 			colors: {
 				primary: '#000000', 
-				secondary: '#84a59d',
+				secondary: '#99c9bd',
 				fondo: '#f5cac3',
 				accent: '#f28482',
 				button: '#84a59d',
+			},
+			fontFamily: {
+				cinzel: ['Cinzel', 'serif'],
+				playfair: ['Playfair', 'serif'],
+			},
+			gridTemplateColumns: {
+				bento: 'repeat(auto-fit, minmax(320px, 1fr))'
 			}
-		},
-		fontFamily: {
-			cinzel: ['Cinzel', 'serif'],
-			playfair: ['Playfair', 'serif'],
 		}
 	},
 	plugins: [],
