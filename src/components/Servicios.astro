@@ -38,10 +38,10 @@ const SERVICIOS = [
     Servicios
   </h2>
 
-  <div class="grid grid-cols-2">
+  <div class="grid grid-cols-1 md:grid-cols-2">
     {
       SERVICIOS.map(({ img, alt, description, title, color }) => (
-        <div class="grid grid-cols-2 aspect-[2/1]">
+        <div class="flex flex-row aspect-[2/1] box-content mb-3 mx-3 last:mb-0 md:m-0">
           <picture class="col-span-1">
             <img class="aspect-square object-cover" src={img} alt={alt} />
           </picture>

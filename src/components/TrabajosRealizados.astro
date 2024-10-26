@@ -6,7 +6,7 @@ const WORK_DONE = [
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corruptrerum eaque nihil architecto ipsum velit vel et porro corporis veroassumenda natus at nobis impedit iusto, eligendi molestiae numquam!",
     image: "/corte-de-cabello.webp",
     color: "bg-fondo",
-    columns: "col-span-2",
+    columns: "md:col-span-2",
   },
   {
     title: "Titulo Trabajo 2",
@@ -14,7 +14,7 @@ const WORK_DONE = [
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corruptrerum eaque nihil architecto ipsum velit vel et porro corporis veroassumenda natus at nobis impedit iusto, eligendi molestiae numquam!",
     image: "/corte-de-cabello.webp",
     color: "bg-accent",
-    columns: "col-span-1",
+    columns: "md:col-span-1",
   },
   {
     title: "Titulo Trabajo 3",
@@ -22,7 +22,7 @@ const WORK_DONE = [
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corruptrerum eaque nihil architecto ipsum velit vel et porro corporis veroassumenda natus at nobis impedit iusto, eligendi molestiae numquam!",
     image: "/corte-de-cabello.webp",
     color: "bg-fondo",
-    columns: "col-span-1",
+    columns: "md:col-span-1",
   },
   {
     title: "Titulo Trabajo 4",
@@ -30,7 +30,7 @@ const WORK_DONE = [
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corruptrerum eaque nihil architecto ipsum velit vel et porro corporis veroassumenda natus at nobis impedit iusto, eligendi molestiae numquam!",
     image: "/corte-de-cabello.webp",
     color: "bg-accent",
-    columns: "col-span-1",
+    columns: "md:col-span-1",
   },
   {
     title: "Titulo Trabajo 5",
@@ -38,7 +38,7 @@ const WORK_DONE = [
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corruptrerum eaque nihil architecto ipsum velit vel et porro corporis veroassumenda natus at nobis impedit iusto, eligendi molestiae numquam!",
     image: "/corte-de-cabello.webp",
     color: "bg-fondo",
-    columns: "col-span-1",
+    columns: "md:col-span-1",
   },
   {
     title: "Titulo Trabajo 6",
@@ -46,7 +46,7 @@ const WORK_DONE = [
       "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corruptrerum eaque nihil architecto ipsum velit vel et porro corporis veroassumenda natus at nobis impedit iusto, eligendi molestiae numquam!",
     image: "/corte-de-cabello.webp",
     color: "bg-accent",
-    columns: "col-span-3",
+    columns: "md:col-span-3",
   },
 ];
 ---
@@ -58,10 +58,14 @@ const WORK_DONE = [
     Trabajos Realizados
   </h2>
 
-  <div class="grid grid-cols-bento gap-3 mb-5">
+  <div
+    class="flex md:grid md:grid-cols-bento gap-3 mb-5 overflow-x-auto snap-x snap-mandatory md:snap-none"
+  >
     {
       WORK_DONE.map(({ title, description, image, color, columns }) => (
-        <div class={`p-2 rounded-lg ${color} ${columns}`}>
+        <div
+          class={`p-4 rounded-lg mx-3 md:mx-0 snap-center flex-none w-[80%] md:w-full ${color} ${columns}`}
+        >
           <div class="info flex flex-col justify-between text-center gap-2">
             <h6 class="font-cinzel text-xl font-semibold tracking-wider">
               {title}
