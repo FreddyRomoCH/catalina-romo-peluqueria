@@ -16,6 +16,9 @@ export default {
 			},
 			gridTemplateColumns: {
 				bento: 'repeat(auto-fit, minmax(320px, 1fr))'
+			},
+			gridTemplateRows: {
+				template: 'auto 1fr auto'
 			}
 		}
 	},
