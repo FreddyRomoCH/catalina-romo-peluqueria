@@ -10,7 +10,7 @@ const menuIcon = "/icons/menu.svg";
     <div class="md:hidden relative">
       <img class="menu-icon w-8" src={menuIcon} alt="Menú" />
       <nav
-        class="mobile-menu top-full hidden absolute bg-button box-content rounded-sm [&>ul>li]:p-2 [&>ul>li]:border-b [&>ul>li]:border-primary [&>ul>li:last-child]:border-0 [&>ul>li]:w-full"
+        class="mobile-menu origin-top top-full hidden absolute bg-button box-content rounded-sm [&>ul>li]:p-2 [&>ul>li]:border-b [&>ul>li]:border-primary [&>ul>li:last-child]:border-0 [&>ul>li]:w-full"
       >
         <MenuHeader />
       </nav>
@@ -40,12 +40,30 @@ const menuIcon = "/icons/menu.svg";
     const menuIcon = document.querySelector(".menu-icon");
     const mobileMenu = document.querySelector(".mobile-menu");
 
+    // Mobile Menu Icon Click
     menuIcon?.addEventListener("click", () => {
-      if (mobileMenu?.classList.contains("hidden")) {
-        mobileMenu?.classList.remove("hidden");
-        mobileMenu?.classList.remove("animate-slide-up");
+      const isMenuMobileOpen = mobileMenu?.classList.contains("hidden")
+        ? false
+        : true;
+
+      if (!isMenuMobileOpen) {
+        mobileMenu?.classList.remove("hidden", "animate-slide-up");
         mobileMenu?.classList.add("animate-slide-down");
       } else {
+        mobileMenu?.classList.remove("animate-slide-down");
+        mobileMenu?.classList.add("animate-slide-up");
+        setTimeout(() => {
+          mobileMenu?.classList.add("hidden");
+        }, 300);
+      }
+    });
+
+    // Mobile Menu Click outside Element
+    document.addEventListener("click", (event) => {
+      if (
+        !mobileMenu?.contains(event.target as Node) &&
+        !menuIcon?.contains(event.target as Node)
+      ) {
         mobileMenu?.classList.remove("animate-slide-down");
         mobileMenu?.classList.add("animate-slide-up");
         setTimeout(() => {
