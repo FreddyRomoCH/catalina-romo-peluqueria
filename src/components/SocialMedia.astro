@@ -1,8 +1,15 @@
+---
+const { color } = Astro.props;
+
+import InstagramIcon from "@components/InstagramIcon.astro";
+import FacebookIcon from "@components/FacebookIcon.astro";
+---
+
 <ul class="flex justify-center items-center gap-2">
   <li>
-    <img class="w-auto h-8" src="/socials/instagram.svg" alt="Instagram" />
+    <InstagramIcon color={color} />
   </li>
   <li>
-    <img class="w-auto h-6" src="/socials/facebook.svg" alt="Facebook" />
+    <FacebookIcon color={color} />
   </li>
 </ul>

@@ -10,9 +10,13 @@ const menuIcon = "/icons/menu.svg";
     <div class="md:hidden relative">
       <img class="menu-icon w-8" src={menuIcon} alt="Menú" />
       <nav
-        class="mobile-menu origin-top top-full hidden absolute bg-button box-content rounded-sm [&>ul>li]:p-2 [&>ul>li]:border-b [&>ul>li]:border-primary [&>ul>li:last-child]:border-0 [&>ul>li]:w-full"
+        class="mobile-menu origin-top top-full hidden absolute bg-button box-content rounded-sm [&>ul>li]:p-2 [&>ul>li]:border-b [&>ul>li]:border-primary [&>ul>li]:w-full"
       >
         <MenuHeader />
+
+        <div class="[&>ul>li]:border-0 [&>ul>li]:p-2">
+          <SocialMedia color="#ffffff" />
+        </div>
       </nav>
     </div>
 
@@ -30,7 +34,7 @@ const menuIcon = "/icons/menu.svg";
     >
 
     <nav class="hidden md:block">
-      <SocialMedia />
+      <SocialMedia color="#84a59d" />
     </nav>
   </div>
 </header>
