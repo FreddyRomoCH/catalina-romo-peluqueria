@@ -1,5 +1,30 @@
 ---
-
+const precios = [
+  {
+    title: "Corte de Pelo para hombre",
+    price: "$5.000",
+  },
+  {
+    title: "Corte de Pelo para mujer",
+    price: "$10.000",
+  },
+  {
+    title: "Manicure",
+    price: "$5.000",
+  },
+  {
+    title: "Maquillaje",
+    price: "$10.000",
+  },
+  {
+    title: "Tinte de Cabello",
+    price: "$15.000",
+  },
+  {
+    title: "Peinado para eventos",
+    price: "$10.000",
+  },
+];
 ---
 
 <section class="max-w-7xl m-auto">
@@ -9,5 +34,18 @@
     Precios
   </h2>
 
-  <div></div>
+  <div class="flex justify-center items-center bg-secondary p-5">
+    <div
+      class="flex flex-col justify-center items-center gap-5 w-[90%] md:w-3/5 m-auto bg-button px-10 py-5 rounded-sm"
+    >
+      {
+        precios.map(({ title, price }) => (
+          <div class="flex flex-row justify-center items-start gap-5 w-full">
+            <p class="font-cinzel flex-1 text-start">{title}:</p>
+            <p class="font-playfair flex-1 font-semibold text-end">{price}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
 </section>
