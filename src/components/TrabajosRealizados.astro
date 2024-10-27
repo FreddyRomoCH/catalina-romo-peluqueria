@@ -64,7 +64,11 @@ const WORK_DONE = [
     {
       WORK_DONE.map(({ title, description, image, color, columns }) => (
         <div
-          class={`p-4 rounded-lg mx-3 md:mx-0 snap-center flex-none w-[80%] md:w-full ${color} ${columns}`}
+          class:list={{
+            "p-4 rounded-lg mx-3 md:mx-0 snap-center flex-none w-[80%] md:w-full": true,
+            [color]: true,
+            [columns]: true,
+          }}
         >
           <div class="info flex flex-col justify-between text-center gap-2">
             <h6 class="font-cinzel text-xl font-semibold tracking-wider">

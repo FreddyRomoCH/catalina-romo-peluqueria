@@ -2,31 +2,27 @@
 const SERVICIOS = [
   {
     title: "Corte de Cabello",
-    img: "/corte-de-cabello.webp",
+    img: "/icons/haircut.svg",
     alt: "Corte de Cabello",
     description: "Descripción del servicio",
-    color: "bg-secondary",
   },
   {
-    title: "Corte de Cabello",
-    img: "/corte-de-cabello.webp",
-    alt: "Corte de Cabello",
+    title: "Teñido de Cabello",
+    img: "/icons/dyeing.svg",
+    alt: "Tinte de Cabello",
     description: "Descripción del servicio",
-    color: "bg-button",
   },
   {
-    title: "Corte de Cabello",
-    img: "/corte-de-cabello.webp",
-    alt: "Corte de Cabello",
+    title: "Manicure",
+    img: "/icons/manicure.svg",
+    alt: "Manicure",
     description: "Descripción del servicio",
-    color: "bg-secondary",
   },
   {
-    title: "Corte de Cabello",
-    img: "/corte-de-cabello.webp",
-    alt: "Corte de Cabello",
+    title: "Maquillaje",
+    img: "/icons/make-up.svg",
+    alt: "Maquillaje",
     description: "Descripción del servicio",
-    color: "bg-button",
   },
 ];
 ---
@@ -39,17 +35,15 @@ const SERVICIOS = [
   </h2>
 
   <div
-    class="flex md:grid md:grid-cols-2 snap-x snap-mandatory overflow-x-auto"
+    class="flex md:grid md:grid-cols-2 snap-x snap-mandatory overflow-x-auto bg-white"
   >
     {
-      SERVICIOS.map(({ img, alt, description, title, color }) => (
-        <div class="flex-none md:flex md:flex-row md:aspect-[2/1] box-content mb-3 mx-3 last:mb-0 md:m-0 snap-center md:snap-none w-[80%] md:w-full">
-          <picture class="md:col-span-1">
-            <img class="aspect-square object-cover" src={img} alt={alt} />
-          </picture>
-          <div
-            class={`md:col-span-1 flex flex-col justify-center items-center gap-3 aspect-square ${color}`}
-          >
+      SERVICIOS.map(({ img, alt, description, title }) => (
+        <div class="flex-none md:flex md:flex-row md:aspect-[2/1] box-content mb-3 mx-3 last:mb-0 md:m-0 snap-center md:snap-none w-[80%] md:w-full md:mb-3">
+          <div class="md:col-span-1 flex flex-col justify-center items-center aspect-square bg-secondary">
+            <img class="w-36" src={img} alt={alt} />
+          </div>
+          <div class="md:col-span-1 flex flex-col justify-center items-center gap-3 aspect-square bg-button">
             <h3 class="font-cinzel text-xl font-semibold tracking-wider">
               {title}
             </h3>
