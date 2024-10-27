@@ -19,7 +19,26 @@ export default {
 			},
 			gridTemplateRows: {
 				template: 'auto 1fr auto'
-			}
+			},
+			keyframes: {
+				'slide-up': {
+				  '0%': { transform: 'scaleY(1)' },
+				  '100%': { transform: 'scaleY(0)' },
+				},
+				'slide-down': {
+				  '0%': { transform: 'scaleY(0)' },
+				  '100%': { transform: 'scaleY(1)' },
+				},
+				'fade-out': {
+				  '0%': { opacity: '1' },
+				  '100%': { opacity: '0' },
+				},
+			},
+			animation: {
+				'fade-out': 'fade-out 1.5s ease-out forwards',
+				'slide-down': 'slide-down 0.3s ease-in-out forwards',
+				'slide-up': 'slide-up 0.3s ease-in-out forwards',
+			},
 		}
 	},
 	plugins: [],

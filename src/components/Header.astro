@@ -1,34 +1,57 @@
+---
+import MenuHeader from "@components/MenuHeader.astro";
+import SocialMedia from "@components/SocialMedia.astro";
+
+const menuIcon = "/icons/menu.svg";
+---
+
 <header class="px-8 py-4 bg-white text-primary">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
-    <span class="font-cinzel font-black italic">Catalina Romo</span>
+    <div class="md:hidden relative">
+      <img class="menu-icon w-8" src={menuIcon} alt="Menú" />
+      <nav
+        class="mobile-menu top-full hidden absolute bg-button box-content rounded-sm [&>ul>li]:p-2 [&>ul>li]:border-b [&>ul>li]:border-primary [&>ul>li:last-child]:border-0 [&>ul>li]:w-full"
+      >
+        <MenuHeader />
+      </nav>
+    </div>
 
-    <nav class="hidden md:block">
-      <ul class="flex justify-center gap-5 items-center font-playfair">
-        <li><a href="/servicios">Servicios</a></li>
-        <li><a href="/galeris">Galería</a></li>
-        <li><a href="/nosotros">Nosotros</a></li>
-        <li><a href="/contacto">Contacto</a></li>
-      </ul>
+    <span class="font-cinzel font-black italic text-sm md:text-base"
+      >Catalina Romo</span
+    >
+
+    <nav class="menu-header hidden md:block">
+      <MenuHeader />
     </nav>
 
     <button
-      class="bg-button text-primary px-4 py-2 rounded hover:contrast-75 font-cinzel text-base font-medium"
+      class="bg-button text-primary px-4 py-2 rounded hover:contrast-75 font-cinzel text-sm md:text-base font-medium"
       >Reserva aquí</button
     >
 
-    <nav>
-      <ul class="flex justify-center items-center gap-2">
-        <li>
-          <img
-            class="w-auto h-8"
-            src="/socials/instagram.svg"
-            alt="Instagram"
-          />
-        </li>
-        <li>
-          <img class="w-auto h-6" src="/socials/facebook.svg" alt="Facebook" />
-        </li>
-      </ul>
+    <nav class="hidden md:block">
+      <SocialMedia />
     </nav>
   </div>
 </header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuIcon = document.querySelector(".menu-icon");
+    const mobileMenu = document.querySelector(".mobile-menu");
+
+    menuIcon?.addEventListener("click", () => {
+      if (mobileMenu?.classList.contains("hidden")) {
+        mobileMenu?.classList.remove("hidden");
+        mobileMenu?.classList.remove("animate-slide-up");
+        mobileMenu?.classList.add("animate-slide-down");
+      } else {
+        mobileMenu?.classList.remove("animate-slide-down");
+        mobileMenu?.classList.add("animate-slide-up");
+        setTimeout(() => {
+          mobileMenu?.classList.add("hidden");
+        }, 300);
+      }
+    });
+  });
+</script>
