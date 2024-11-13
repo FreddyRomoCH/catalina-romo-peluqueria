@@ -1,9 +1,9 @@
 import { MapLocation } from "@components/MapLocation.jsx";
-import { ContactForm } from "@components/ContactForm.jsx";
 import { useRef, useState } from "react";
 
 export function ContactSection() {
   const API_KEY = import.meta.env.PUBLIC_GOOGLE_MAPS_API_KEY;
+  const MAP_ID = import.meta.env.PUBLIC_GOOGLE_MAP_ID;
   const [error, setError] = useState(false);
   const [customerAddress, setCustomerAddress] = useState("");
   const addressRef = useRef();
@@ -22,13 +22,16 @@ export function ContactSection() {
       <h5 className="font-cinzel text-pretty tracking-wider text-2xl">
         Cómo llegar
       </h5>
-      <div>
+      <div className="flex flex-row justify-between items-center gap-2">
         <input
-          className="rounded px-4 py-2"
+          className={`border-2 rounded px-4 py-2 ${
+            error ? "border-red-500" : "border-secondary"
+          }`}
           type="text"
           placeholder="Agrega tu dirección"
           name="address"
           ref={addressRef}
+          onChange={() => setError(false)}
         />
         <button
           onClick={handleOnGetDirection}
@@ -41,6 +44,7 @@ export function ContactSection() {
         <MapLocation
           customerAddress={customerAddress}
           API_KEY={API_KEY}
+          MAP_ID={MAP_ID}
           peluqueriaCoords={{ lat: -33.4543932, lng: -70.7567109 }}
           error={error}
         />

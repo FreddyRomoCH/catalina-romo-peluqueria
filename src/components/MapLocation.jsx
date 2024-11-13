@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   APIProvider,
   ControlPosition,
   Map,
   MapControl,
-  Marker,
+  AdvancedMarker,
+  Pin,
+  InfoWindow,
+  useMap,
+  useMapsLibrary,
 } from "@vis.gl/react-google-maps";
 import { ContactForm } from "@components/ContactForm";
 
@@ -32,91 +36,131 @@ const MapDirections = ({ customerAddress, error }) => {
 
 export function MapLocation({
   API_KEY,
+  MAP_ID,
   customerAddress,
   peluqueriaCoords,
   error,
 }) {
-  const [originLatLng, setOriginLatLng] = useState(null);
-  const [directions, setDirections] = useState(null);
-  const [map, setMap] = useState(null);
-
-  useEffect(() => {
-    if (customerAddress) {
-      const geocoder = new window.google.maps.Geocoder();
-      geocoder.geocode({ address: customerAddress }, (results, status) => {
-        if (status === "OK" && results[0]) {
-          const location = results[0].geometry.location;
-          setOriginLatLng({ lat: location.lat(), lng: location.lng() });
-          console.log("Geocoded address:", {
-            lat: location.lat(),
-            lng: location.lng(),
-          });
-        } else {
-          console.error(
-            "Geocode was not successful for the following reason:",
-            status
-          );
-        }
-      });
-    }
-  }, [customerAddress]);
-
-  useEffect(() => {
-    if (originLatLng) {
-      const directionsService = new window.google.maps.DirectionsService();
-      directionsService.route(
-        {
-          origin: originLatLng,
-          destination: peluqueriaCoords,
-          travelMode: "DRIVING",
-        },
-        (result, status) => {
-          if (status === "OK") {
-            setDirections(result);
-            console.log("Directions result:", result);
-          } else {
-            console.error("Error retrieving directions:", status);
-          }
-        }
-      );
-    }
-  }, [originLatLng, peluqueriaCoords]);
-
-  useEffect(() => {
-    if (map && directions) {
-      const directionsRenderer = new window.google.maps.DirectionsRenderer();
-      directionsRenderer.setMap(map);
-      directionsRenderer.setDirections(directions);
-      console.log("DirectionsRenderer set on map with directions");
-    }
-  }, [map, directions]);
+  const [open, setOpen] = useState(false);
 
   const mapProps = {
-    style: {
-      width: "100%",
-      height: "80vh",
-    },
-    zoom: 14,
+    zoom: 13,
     center: peluqueriaCoords,
-    gestureHandling: "greedy",
-    disableDefaultUI: false,
-    onLoad: (mapInstance) => {
-      setMap(mapInstance);
-    },
+    disableDefaultUI: true,
+    mapId: MAP_ID,
   };
 
   return (
     <APIProvider apiKey={API_KEY}>
-      <Map {...mapProps}>
-        <MapControl position={ControlPosition.INLINE_START_BLOCK_END}>
-          <MapDirections error={error} customerAddress={customerAddress} />
-        </MapControl>
+      <div style={{ height: "80vh", width: "100%" }}>
+        <Map {...mapProps}>
+          {/* <MapControl position={ControlPosition.TOP_RIGHT}>
+            <MapDirections error={error} customerAddress={customerAddress} />
+          </MapControl> */}
 
-        <MapControl position={ControlPosition.TOP_RIGHT}>
-          <ContactForm />
-        </MapControl>
-        <Marker position={peluqueriaCoords} />
-      </Map>
+          {/* <MapControl position={ControlPosition.TOP_LEFT}>
+            <ContactForm />
+          </MapControl> */}
+
+          <AdvancedMarker
+            position={peluqueriaCoords}
+            onClick={() => setOpen(true)}
+          >
+            <Pin
+              background={"black"}
+              borderColor={"grey"}
+              glyphColor={"grey"}
+            />
+
+            {open && (
+              <InfoWindow
+                position={peluqueriaCoords}
+                onCloseClick={() => setOpen(false)}
+              >
+                <div className="flex flex-col gap-2 bg-secondary p-3 m-1 rounded-sm">
+                  <span className="font-cinzel text-pretty tracking-wider text-2xl">
+                    Peluquería
+                  </span>
+                  <span className="font-playfair text-lg">
+                    Pasaje Tacna 538, Pudahuel Sur
+                  </span>
+                  <span className="font-playfair text-lg">+56 9 1234 5678</span>
+                </div>
+              </InfoWindow>
+            )}
+          </AdvancedMarker>
+          {!error && <Directions customerAddress={customerAddress} />}
+        </Map>
+      </div>
     </APIProvider>
+  );
+}
+
+function Directions({ customerAddress }) {
+  console.log(customerAddress);
+  const map = useMap();
+  const routesLibrary = useMapsLibrary("routes");
+  const [directionsService, setDirectionsService] = useState();
+  const [directionsRenderer, setDirectionsRenderer] = useState();
+  const [routes, setRoutes] = useState([]);
+  const [routeIndex, setRouteIndex] = useState(0);
+  const selectedRoute = routes[routeIndex];
+  const leg = selectedRoute?.legs[0];
+
+  useEffect(() => {
+    if (!routesLibrary || !map) return;
+    setDirectionsService(new routesLibrary.DirectionsService());
+    setDirectionsRenderer(new routesLibrary.DirectionsRenderer({ map }));
+  }, [routesLibrary, map, customerAddress]);
+
+  useEffect(() => {
+    if (!directionsRenderer || !directionsService) return;
+
+    directionsService
+      .route({
+        origin: customerAddress,
+        destination: "Pasaje Tacna 538, Pudahuel Sur",
+        travelMode: google.maps.TravelMode.DRIVING,
+        provideRouteAlternatives: true,
+      })
+      .then((response) => {
+        directionsRenderer.setDirections(response);
+        setRoutes(response.routes);
+      });
+  }, [directionsRenderer, directionsService]);
+
+  useEffect(() => {
+    if (!directionsRenderer) return;
+    directionsRenderer.setRouteIndex(routeIndex);
+  }, [routeIndex, directionsRenderer]);
+
+  if (!leg) return null;
+
+  return (
+    <div className="absolute top-0 bg-button m-3 p-3 flex flex-col gap-5">
+      <div>
+        <h2>{selectedRoute.summary}</h2>
+        <p>
+          {leg.start_address.split(",")[0]} to {leg.end_address.split(",")[0]}
+        </p>
+        <p>Distancia: {leg.distance?.text}</p>
+        <p>Duración: {leg.duration?.text}</p>
+      </div>
+
+      {routes.length > 1 && (
+        <div>
+          <h2>Otras rutas</h2>
+          <ul>
+            {routes.map((route, index) => (
+              <li key={route.summary}>
+                <button onClick={() => setRouteIndex(index)}>
+                  {route.summary}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
   );
 }
