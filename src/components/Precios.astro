@@ -29,20 +29,22 @@ const precios = [
 
 <section class="max-w-7xl m-auto">
   <h2
-    class="font-cinzel uppercase text-center py-5 text-2xl md:text-4xl font-normal bg-white tracking-widest"
+    class="font-cinzel uppercase text-center py-5 text-2xl md:text-4xl font-normal bg-principal tracking-widest text-dorado"
   >
     Precios
   </h2>
 
   <div class="flex justify-center items-center bg-secondary p-5">
     <div
-      class="flex flex-col justify-center items-center gap-5 w-[90%] md:w-3/5 m-auto bg-button px-10 py-5 rounded"
+      class="flex flex-col justify-center items-center gap-5 w-[90%] md:w-3/5 m-auto bg-principal-darker px-10 py-5 rounded"
     >
       {
         precios.map(({ title, price }) => (
           <div class="flex flex-row justify-center items-start gap-5 w-full">
-            <p class="font-cinzel flex-1 text-start">{title}:</p>
-            <p class="font-playfair flex-1 font-semibold text-end">{price}</p>
+            <p class="font-cinzel flex-1 text-start text-dorado">{title}:</p>
+            <p class="font-playfair flex-1 font-semibold text-end text-gris">
+              {price}
+            </p>
           </div>
         ))
       }

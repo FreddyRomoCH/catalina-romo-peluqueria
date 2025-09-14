@@ -2,26 +2,31 @@
 import MenuHeader from "@components/MenuHeader.astro";
 import SocialMedia from "@components/SocialMedia.astro";
 
-const menuIcon = "/icons/menu.svg";
+const menuIcon = "/icons/menu.png";
 ---
 
-<header class="px-8 py-4 bg-white text-primary">
+<header class="px-8 py-4 bg-principal text-dorado">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
     <div class="md:hidden relative">
       <img class="menu-icon w-8" src={menuIcon} alt="Menú" />
       <nav
-        class="mobile-menu origin-top top-full hidden absolute bg-button box-content rounded-sm [&>ul>li]:p-2 [&>ul>li]:border-b [&>ul>li]:border-primary [&>ul>li]:w-full"
+        class="mobile-menu origin-top top-full hidden absolute bg-principal box-content rounded-sm [&>ul>li]:p-2 [&>ul>li]:border-b [&>ul>li]:border-primary [&>ul>li]:w-full z-10"
       >
         <MenuHeader />
 
         <div class="[&>ul>li]:border-0 [&>ul>li]:p-2">
-          <SocialMedia color="#ffffff" />
+          <SocialMedia color="#BFA05A" />
         </div>
       </nav>
     </div>
 
-    <span class="font-cinzel font-black italic text-sm md:text-base"
-      >Catalina Romo</span
+    <span
+      class="font-cinzel font-black italic text-sm md:text-base h-20 sm:h-14 block"
+      ><img
+        class="h-full w-auto object-cover"
+        src="/public/logo.png"
+        alt="Catalina Romo - Logo"
+      /></span
     >
 
     <nav class="menu-header hidden md:block">
@@ -29,12 +34,12 @@ const menuIcon = "/icons/menu.svg";
     </nav>
 
     <button
-      class="bg-button text-primary px-4 py-2 rounded hover:contrast-75 font-cinzel text-sm md:text-base font-medium"
+      class="bg-dorado text-principal px-4 py-2 rounded hover:contrast-75 font-cinzel text-sm md:text-base font-medium"
       >Reserva aquí</button
     >
 
     <nav class="hidden md:block">
-      <SocialMedia color="#84a59d" />
+      <SocialMedia color="#EAD285" />
     </nav>
   </div>
 </header>

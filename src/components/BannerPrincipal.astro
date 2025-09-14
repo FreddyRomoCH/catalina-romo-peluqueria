@@ -1,17 +1,22 @@
-<section class="grid grid-cols-2 w-full md:h-[80vh]">
+<section
+  class="grid grid-cols-2 w-full md:h-[50vh] bg-[url('public/banner-peluqueria.png')] bg-cover bg-top relative"
+>
+  <div></div>
   <div
-    class="flex flex-col gap-3 flex-wrap justify-center items-center content-center bg-fondo m-auto rounded-sm col-span-2 md:col-span-1 w-full -z-10 p-5 text-center aspect-square md:aspect-auto md:h-full"
+    class="flex flex-col gap-3 flex-wrap justify-center items-center content-centers m-auto rounded-sm col-span-2 md:col-span-1 w-full p-5 text-center aspect-square md:aspect-auto md:h-full"
   >
-    <h1 class="font-cinzel font-bold text-3xl md:text-2xl mb-5 tracking-wider">
-      Catalina Romo - Estilista
+    <h1
+      class="font-cinzel font-bold text-3xl md:text-2xl mb-5 tracking-wider text-gris"
+    >
+      Catalina Romo<br /> Estilista - Colorista
     </h1>
     <div class="flex justify-center gap-3">
       <button
-        class="px-4 py-2 bg-button text-primary rounded font-cinzel text-base font-medium hover:saturate-50"
+        class="px-4 py-2 bg-principal text-dorado rounded font-cinzel text-base font-medium hover:saturate-50 border-2 border-dorado cursor-pointer md:bg-transparent"
         >Reservar Cita</button
       >
       <button
-        class="px-4 py-2 bg-button text-primary rounded font-cinzel text-base font-medium hover:saturate-50"
+        class="px-4 py-2 bg-principal text-dorado rounded font-cinzel text-base font-medium hover:saturate-50 border-2 border-dorado cursor-pointer md:bg-transparent"
         >Conócenos más</button
       >
     </div>
@@ -20,12 +25,12 @@
       class="absolute -z-10 top-0 left-0 h-full w-full object-contain md:invisible md:hidden"
     >
       <img class="w-full h-full object-cover" src="/banner.webp" alt="Banner" />
-      <div class="absolute top-0 left-0 w-full h-full bg-fondo/80"></div>
+      <div class="absolute top-0 left-0 w-full h-full"></div>
     </picture>
   </div>
 
-  <picture class="relative -z-10 hidden invisible md:visible md:block">
+  <!-- <picture class="relative -z-10 hidden invisible md:visible md:block">
     <img class="w-full h-full object-cover" src="/banner.webp" alt="Banner" />
     <div class="absolute top-0 left-0 w-full h-full bg-button/35"></div>
-  </picture>
+  </picture> -->
 </section>
