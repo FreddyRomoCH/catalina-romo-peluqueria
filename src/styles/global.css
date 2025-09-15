@@ -17,6 +17,7 @@
     /* Fonts */
     --font-cinzel: Cinzel, serif;
     --font-playfair: Playfair, serif;
+    --font-inter: Inter, sans-serif;
 
     /* Grids */
     --grid-cols-bento: repeat(auto-fit, minmax(320px, 1fr));

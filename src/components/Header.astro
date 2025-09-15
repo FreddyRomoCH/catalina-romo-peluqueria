@@ -22,14 +22,17 @@ const menuIcon = "/icons/menu.png";
 
     <span
       class="font-cinzel font-black italic text-sm md:text-base h-20 sm:h-14 block"
-      ><img
-        class="h-full w-auto object-cover"
-        src="/logo.png"
-        alt="Catalina Romo - Logo"
-      /></span
     >
+      <a href="/">
+        <img
+          class="h-full w-auto object-cover"
+          src="/logo.png"
+          alt="Catalina Romo - Logo"
+        />
+      </a>
+    </span>
 
-    <nav class="menu-header hidden md:block">
+    <nav class="menu-header hidden md:block" arial-label="Main Menu">
       <MenuHeader />
     </nav>
 
@@ -38,47 +41,46 @@ const menuIcon = "/icons/menu.png";
       >Reserva aquí</button
     >
 
-    <nav class="hidden md:block">
+    <nav class="hidden md:block" aria-label="Redes Sociales">
       <SocialMedia color="#EAD285" />
     </nav>
   </div>
 </header>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const menuIcon = document.querySelector(".menu-icon");
-    const mobileMenu = document.querySelector(".mobile-menu");
+  const menuIcon = document.querySelector(".menu-icon");
+  const mobileMenu = document.querySelector(".mobile-menu");
 
-    // Mobile Menu Icon Click
-    menuIcon?.addEventListener("click", () => {
-      const isMenuMobileOpen = mobileMenu?.classList.contains("hidden")
-        ? false
-        : true;
+  // Toggle al hacer clic en el ícono
+  menuIcon?.addEventListener("click", () => {
+    const isHidden = mobileMenu?.classList.contains("hidden");
 
-      if (!isMenuMobileOpen) {
-        mobileMenu?.classList.remove("hidden", "animate-slide-up");
-        mobileMenu?.classList.add("animate-slide-down");
-      } else {
+    mobileMenu?.classList.remove("animate-slide-up", "animate-slide-down");
+
+    if (isHidden) {
+      // Mostrar con animación hacia abajo
+      mobileMenu?.classList.remove("hidden");
+      mobileMenu?.classList.add("animate-slide-down");
+    } else {
+      // Ocultar con animación hacia arriba
+      mobileMenu?.classList.remove("animate-slide-down");
+      mobileMenu?.classList.add("animate-slide-up");
+      setTimeout(() => mobileMenu?.classList.add("hidden"), 300);
+    }
+  });
+
+  // Cerrar al hacer clic fuera
+  document.addEventListener("click", (event) => {
+    if (
+      event.target instanceof Node &&
+      !mobileMenu?.contains(event.target) &&
+      !menuIcon?.contains(event.target)
+    ) {
+      if (!mobileMenu?.classList.contains("hidden")) {
         mobileMenu?.classList.remove("animate-slide-down");
         mobileMenu?.classList.add("animate-slide-up");
-        setTimeout(() => {
-          mobileMenu?.classList.add("hidden");
-        }, 300);
+        setTimeout(() => mobileMenu?.classList.add("hidden"), 300);
       }
-    });
-
-    // Mobile Menu Click outside Element
-    document.addEventListener("click", (event) => {
-      if (
-        !mobileMenu?.contains(event.target as Node) &&
-        !menuIcon?.contains(event.target as Node)
-      ) {
-        mobileMenu?.classList.remove("animate-slide-down");
-        mobileMenu?.classList.add("animate-slide-up");
-        setTimeout(() => {
-          mobileMenu?.classList.add("hidden");
-        }, 300);
-      }
-    });
+    }
   });
 </script>
