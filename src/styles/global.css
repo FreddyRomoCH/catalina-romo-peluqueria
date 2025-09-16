@@ -11,6 +11,8 @@
     --color-fondo: #f5cac3;
     --color-accent: #f28482;
     --color-button: #84a59d;
+    --color-error: #eb3b3b; /* Red for error messages */
+    --color-success: #4BB543; /* Green for success messages */
 
     /* Backgrounds */
 
@@ -44,4 +46,16 @@
         0% { opacity: 1; }
         100% { opacity: 0; }
     }
+}
+
+.error-msg {
+    @apply text-error text-xs;
+}
+
+.title-section {
+    @apply font-cinzel uppercase text-center py-8 text-2xl md:text-4xl font-normal bg-principal tracking-widest text-dorado;
+}
+
+.input-form {
+    @apply block border border-dorado p-1 rounded-sm w-full my-1.5 font-inter text-gris font-extralight text-sm active:outline-dorado focus:outline-dorado;
 }
