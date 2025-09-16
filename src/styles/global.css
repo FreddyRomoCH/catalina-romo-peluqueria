@@ -59,3 +59,7 @@
 .input-form {
     @apply block border border-dorado p-1 rounded-sm w-full my-1.5 font-inter text-gris font-extralight text-sm active:outline-dorado focus:outline-dorado;
 }
+
+.btn-banner {
+    @apply px-4 py-2 bg-principal text-dorado rounded font-cinzel text-base font-medium transition hover:bg-principal border-2 border-dorado cursor-pointer md:bg-transparent;
+}
