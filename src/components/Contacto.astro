@@ -63,7 +63,7 @@
 
       <div
         id="success-message"
-        class="mt-2.5 p-3 bg-green-500/20 text-success border border-success rounded text-sm shadow-lg hidden"
+        class="mt-2.5 p-3 bg-green-500/20 text-success border border-success rounded text-sm shadow-lg transition-opacity duration-500 opacity-0"
       >
         ✅ Mensaje enviado correctamente
       </div>
@@ -249,14 +249,11 @@
   function showToast() {
     const toast = document.getElementById("success-message") as HTMLElement;
     toast.classList.remove("hidden");
+    requestAnimationFrame(() => toast.classList.remove("opacity-0"));
 
     setTimeout(() => {
-      toast.classList.add("animate-fade-out");
-
-      setTimeout(() => {
-        toast.classList.add("hidden");
-        toast.classList.remove("animate-fade-out");
-      }, 500);
-    }, 3000);
+      toast.classList.add("opacity-0");
+      setTimeout(() => toast.classList.add("hidden"), 500);
+    }, 4000);
   }
 </script>
