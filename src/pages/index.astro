@@ -16,3 +16,25 @@ import Contacto from "@components/Contacto.astro";
   <Nosotros />
   <Contacto />
 </Layout>
+
+<script>
+  const sections = document.querySelectorAll("section[id]");
+  const options = { threshold: 0.5 };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const title = entry.target.querySelector(".title-section");
+      if (!title) return;
+
+      if (entry.isIntersecting) {
+        //Active Section
+        title.classList.add("active-section");
+      } else {
+        //Inactive Section
+        title.classList.remove("active-section");
+      }
+    });
+  }, options);
+
+  sections.forEach((section) => observer.observe(section));
+</script>

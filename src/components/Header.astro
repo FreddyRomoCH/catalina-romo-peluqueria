@@ -25,7 +25,7 @@ const menuIcon = "/icons/menu.png";
     >
       <a href="/">
         <img
-          class="h-full w-auto object-cover"
+          class="h-full w-auto object-cover hover:scale-110 transition-transform duration-200"
           src="/logo.png"
           alt="Catalina Romo - Logo"
         />
@@ -36,9 +36,10 @@ const menuIcon = "/icons/menu.png";
       <MenuHeader />
     </nav>
 
-    <button
-      class="bg-dorado text-principal px-4 py-2 rounded hover:contrast-75 font-cinzel text-sm md:text-base font-medium"
-      >Reserva aquí</button
+    <a
+      href="#sect-contacto"
+      class="bg-dorado hover:bg-principal text-principal hover:text-dorado transition-colors duration-150 px-4 py-2 rounded hover:contrast-75 font-cinzel text-sm md:text-base font-medium cursor-pointer"
+      >Reserva aquí</a
     >
 
     <nav class="hidden md:block" aria-label="Redes Sociales">
