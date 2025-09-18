@@ -34,7 +34,8 @@ import Contacto from "@components/Contacto.astro";
 
         //Add active class to menu header
         document.querySelectorAll(".menu-header").forEach((link) => {
-          if (link.getAttribute("href") === `#${id}`) {
+          const href = link.getAttribute("href");
+          if (href === `#${id}`) {
             link.classList.add("active");
           } else {
             link.classList.remove("active");
