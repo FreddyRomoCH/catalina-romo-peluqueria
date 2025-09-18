@@ -64,6 +64,10 @@
     @apply font-cinzel font-normal text-sm tracking-wider transition-colors px-3 py-1 rounded;
 }
 
+.menu-header.active {
+    @apply text-principal bg-dorado;
+}
+
 .title-section {
     @apply font-cinzel uppercase text-center py-4 md:py-8 text-lg md:text-4xl font-normal bg-principal tracking-widest text-dorado transition-all duration-200;
 }

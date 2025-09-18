@@ -28,6 +28,19 @@ import Contacto from "@components/Contacto.astro";
 
       if (entry.isIntersecting) {
         //Active Section
+        const id = entry.target.getAttribute("id");
+        //Update URL hash
+        history.replaceState(null, "", `#${id}`);
+
+        //Add active class to menu header
+        document.querySelectorAll(".menu-header").forEach((link) => {
+          if (link.getAttribute("href") === `#${id}`) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        });
+
         title.classList.add("active-section");
       } else {
         //Inactive Section
