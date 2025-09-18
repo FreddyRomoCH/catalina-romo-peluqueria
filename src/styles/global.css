@@ -65,7 +65,7 @@
 }
 
 .title-section {
-    @apply font-cinzel uppercase text-center py-8 text-2xl md:text-4xl font-normal bg-principal tracking-widest text-dorado transition-all duration-200;
+    @apply font-cinzel uppercase text-center py-4 md:py-8 text-lg md:text-4xl font-normal bg-principal tracking-widest text-dorado transition-all duration-200;
 }
 
 .active-section {
@@ -74,4 +74,5 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
 }

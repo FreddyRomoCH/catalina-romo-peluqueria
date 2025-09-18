@@ -5,7 +5,7 @@ import SocialMedia from "@components/SocialMedia.astro";
 const menuIcon = "/icons/menu.png";
 ---
 
-<header class="px-8 py-4 bg-principal text-dorado">
+<header class="px-8 py-4 bg-principal text-dorado sticky top-0 z-50 shadow-md">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
     <div class="md:hidden relative">
       <img class="menu-icon w-8" src={menuIcon} alt="Menú" />
@@ -70,6 +70,12 @@ const menuIcon = "/icons/menu.png";
     }
   });
 
+  function closeMenu() {
+    mobileMenu?.classList.remove("animate-slide-down");
+    mobileMenu?.classList.add("animate-slide-up");
+    setTimeout(() => mobileMenu?.classList.add("hidden"), 300);
+  }
+
   // Cerrar al hacer clic fuera
   document.addEventListener("click", (event) => {
     if (
@@ -78,10 +84,19 @@ const menuIcon = "/icons/menu.png";
       !menuIcon?.contains(event.target)
     ) {
       if (!mobileMenu?.classList.contains("hidden")) {
-        mobileMenu?.classList.remove("animate-slide-down");
-        mobileMenu?.classList.add("animate-slide-up");
-        setTimeout(() => mobileMenu?.classList.add("hidden"), 300);
+        closeMenu();
       }
     }
+  });
+
+  //Cerrar emnu al hacer clic en un enlace
+  const menuLinks = mobileMenu?.querySelectorAll("a");
+
+  menuLinks?.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (!mobileMenu?.classList.contains("hidden")) {
+        closeMenu();
+      }
+    });
   });
 </script>
