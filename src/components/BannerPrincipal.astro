@@ -1,17 +1,39 @@
-<section
-  class="flex flex-row w-full md:h-[50vh] bg-[url('/banner-peluqueria.webp')] bg-cover bg-top relative md:mask-radial-at-top md:mask-radial-from-50% md:mask-radial-to-100%"
->
-  <div
-    class="flex flex-col flex-wrap justify-center items-center content-center md:content-end m-auto rounded-sm w-full p-5 text-center aspect-square md:aspect-auto md:h-full max-w-7xl md:pr-20"
-  >
-    <h1
-      class="font-playfair font-bold text-3xl md:text-3xl mb-5 tracking-wider text-gris"
+---
+const {
+  title,
+  subtitle,
+  btnText1,
+  btnLink1,
+  btnText2,
+  btnLink2,
+  banner,
+  isActive,
+} = Astro.props;
+
+const heroBanner = `https:${banner[0].fields.file.url}`;
+---
+
+{
+  isActive && (
+    <section
+      class="flex flex-row w-full md:h-[50vh] bg-cover bg-top relative md:mask-radial-at-top md:mask-radial-from-50% md:mask-radial-to-100%"
+      style={`background-image: url('${heroBanner}');`}
     >
-      Catalina Romo<br /> Estilista - Colorista
-    </h1>
-    <div class="flex justify-center gap-3">
-      <a href="#contacto" class="btn-banner">Reservar Cita</a>
-      <a href="#conoceme" class="btn-banner">Conócenos más</a>
-    </div>
-  </div>
-</section>
+      <div class="flex flex-col flex-wrap justify-center items-center content-center md:content-end m-auto rounded-sm w-full p-5 text-center aspect-square md:aspect-auto md:h-full max-w-7xl md:pr-20">
+        <h1 class="font-playfair font-bold text-3xl md:text-3xl mb-5 tracking-wider text-gris">
+          {title}
+          <br />
+          {subtitle}
+        </h1>
+        <div class="flex justify-center gap-3">
+          <a href={btnLink1} class="btn-banner">
+            {btnText1}
+          </a>
+          <a href={btnLink2} class="btn-banner">
+            {btnText2}
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
