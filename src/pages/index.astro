@@ -6,19 +6,40 @@ import TrabajosRealizados from "@components/TrabajosRealizados.astro";
 import Precios from "@components/Precios.astro";
 import Nosotros from "@components/Nosotros.astro";
 import Contacto from "@components/Contacto.astro";
-import { getHeroBanner, getServicios, STRAPI_BASE_URL } from "@lib/manager";
+import {
+  getAboutMe,
+  getHeroBanner,
+  getPrecios,
+  getServicios,
+  getTrabajos,
+  STRAPI_BASE_URL,
+} from "@lib/manager";
 
 const homePageBanner = await getHeroBanner();
 
 const homePageServicios = await getServicios();
+
+const homePageTrabajos = await getTrabajos();
+
+const homePagePrecios = await getPrecios();
+
+const homePageAboutMe = await getAboutMe();
 ---
 
 <Layout title="Catalina Romo - Estilista">
   <BannerPrincipal homePageBanner={homePageBanner} baseUrl={STRAPI_BASE_URL} />
+
   <Servicios homePageServicios={homePageServicios} baseUrl={STRAPI_BASE_URL} />
-  <TrabajosRealizados />
-  <Precios />
-  <Nosotros />
+
+  <TrabajosRealizados
+    homePageTrabajos={homePageTrabajos}
+    baseUrl={STRAPI_BASE_URL}
+  />
+
+  <Precios homePagePrecios={homePagePrecios} />
+
+  <Nosotros homePageAboutMe={homePageAboutMe} baseUrl={STRAPI_BASE_URL} />
+
   <Contacto />
 </Layout>
 

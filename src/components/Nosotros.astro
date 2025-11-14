@@ -1,3 +1,9 @@
+---
+const { homePageAboutMe, baseUrl } = Astro.props;
+
+const { description, image } = homePageAboutMe.section[0].yo;
+---
+
 <section id="conoceme" class="max-w-7xl m-auto mb-12">
   <h2 class="title-section">¿Quién soy?</h2>
 
@@ -6,18 +12,14 @@
   >
     <div class="order-2 md:order-1">
       <p class="font-playfair font-medium text-base text-gris-oscuro">
-        Mi nombre es Catalina Romo, soy Estilista profesional. Lorem, ipsum
-        dolor sit amet consectetur adipisicing elit. Error eligendi, rerum quia
-        sapiente quas quos repellendus esse, unde ipsum, repellat consequatur
-        quis dolorum harum repudiandae voluptas velit voluptatum eum
-        reprehenderit.
+        {description}
       </p>
     </div>
 
     <picture class="order-1 md:order-2">
       <img
         class="aspect-square object-cover rounded-md"
-        src="/corte-de-cabello.webp"
+        src={`${baseUrl}${image[0].url}`}
         alt="Foto Catalina Romo"
       />
     </picture>

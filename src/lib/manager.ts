@@ -9,9 +9,33 @@ export async function getHeroBanner() {
 }
 
 export async function getServicios() {
-    const queryServicios = 'populate[section][on][layout.servicios][populate][servicio][populate][icon][fields]=url'
+    const queryServicios = 'populate[section][on][layout.servicios][populate][servicio][populate][image][fields]=url'
 
     const response = await getStrapiData(`/api/home-page?${queryServicios}`)
+
+    return response?.data
+}
+
+export async function getTrabajos() {
+    const queryTrabajos = 'populate[section][on][layout.trabajos][populate][trabajo][populate][image][fields]=url'
+
+    const response = await getStrapiData(`/api/home-page?${queryTrabajos}`)
+
+    return response?.data
+}
+
+export async function getPrecios() {
+    const queryPrecios = 'populate[section][on][layout.precios][populate][precio][populate]'
+
+    const response = await getStrapiData(`/api/home-page?${queryPrecios}`)
+
+    return response?.data
+}
+
+export async function getAboutMe() {
+    const queryAboutMe = 'populate[section][on][layout.quien-soy][populate][yo][populate][image][fields]=url'
+
+    const response = await getStrapiData(`/api/home-page?${queryAboutMe}`)
 
     return response?.data
 }

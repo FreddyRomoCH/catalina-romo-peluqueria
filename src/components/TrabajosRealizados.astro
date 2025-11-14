@@ -1,88 +1,58 @@
 ---
-const WORK_DONE = [
-  {
-    title: "Corte de Cabello Hombre",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corruptrerum eaque nihil architecto ipsum velit vel et porro corporis veroassumenda natus at nobis impedit iusto, eligendi molestiae numquam!",
-    image: "/corte-hombre.webp",
-    color: "bg-principal-lighter",
-    columns: "md:col-span-2",
-  },
-  {
-    title: "Titulo Trabajo 2",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corruptrerum eaque nihil architecto ipsum velit vel et porro corporis veroassumenda natus at nobis impedit iusto, eligendi molestiae numquam!",
-    image: "/corte-de-cabello.webp",
-    color: "bg-principal-darker",
-    columns: "md:col-span-1",
-  },
-  {
-    title: "Titulo Trabajo 3",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corruptrerum eaque nihil architecto ipsum velit vel et porro corporis veroassumenda natus at nobis impedit iusto, eligendi molestiae numquam!",
-    image: "/corte-de-cabello.webp",
-    color: "bg-principal-lighter",
-    columns: "md:col-span-1",
-  },
-  {
-    title: "Titulo Trabajo 4",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corruptrerum eaque nihil architecto ipsum velit vel et porro corporis veroassumenda natus at nobis impedit iusto, eligendi molestiae numquam!",
-    image: "/corte-de-cabello.webp",
-    color: "bg-principal-darker",
-    columns: "md:col-span-1",
-  },
-  {
-    title: "Titulo Trabajo 5",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corruptrerum eaque nihil architecto ipsum velit vel et porro corporis veroassumenda natus at nobis impedit iusto, eligendi molestiae numquam!",
-    image: "/corte-de-cabello.webp",
-    color: "bg-principal-lighter",
-    columns: "md:col-span-1",
-  },
-  {
-    title: "Titulo Trabajo 6",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corruptrerum eaque nihil architecto ipsum velit vel et porro corporis veroassumenda natus at nobis impedit iusto, eligendi molestiae numquam!",
-    image: "/corte-de-cabello.webp",
-    color: "bg-principal-darker",
-    columns: "md:col-span-3",
-  },
-];
+interface WorkTypes {
+  title: string;
+  description: string;
+  image: ImageType[];
+  columns: number;
+  color: string;
+}
+
+interface ImageType {
+  url: string;
+}
+
+const { homePageTrabajos, baseUrl } = Astro.props;
+
+const workDone = homePageTrabajos.section[0].trabajo;
 ---
 
 <section id="trabajos" class="max-w-7xl m-auto mb-12">
   <h2 class="title-section">Trabajos Realizados</h2>
 
   <div
-    class="flex mt-5 md:grid md:grid-cols-bento gap-3 mb-5 overflow-x-auto snap-x snap-mandatory md:snap-none"
+    class="flex mt-5 md:grid md:grid-cols-4 gap-3 mb-5 overflow-x-auto snap-x snap-mandatory md:snap-none"
   >
     {
-      WORK_DONE.map(({ title, description, image, color, columns }) => (
-        <div
-          class:list={{
-            "p-4 rounded-lg mx-3 md:mx-0 snap-center flex-none w-[80%] md:w-full": true,
-            [color]: true,
-            [columns]: true,
-          }}
-        >
-          <div class="info flex flex-col justify-between text-center gap-2">
-            <h6 class="font-playfair text-xl font-semibold tracking-wider text-dorado">
-              {title}
-            </h6>
-            <p class="font-inter font-extralight text-gris mb-3">
-              {description}
-            </p>
-            <picture>
-              <img
-                class="object-cover w-full h-80"
-                src={image}
-                alt={`Cover of ${title}`}
-              />
-            </picture>
+      workDone.map(
+        ({ title, description, image, color, columns }: WorkTypes) => (
+          <div
+            class:list={{
+              "p-4 rounded-lg mx-3 md:mx-0 snap-center flex-none w-[80%] md:w-full": true,
+              "md:col-span-1": columns === 1,
+              "md:col-span-2": columns === 2,
+              "md:col-span-3": columns === 3,
+              "md:col-span-4": columns === 4,
+              [`bg-principal-${color}`]: true,
+            }}
+          >
+            <div class="info flex flex-col justify-between text-center gap-2">
+              <h6 class="font-playfair text-xl font-semibold tracking-wider text-dorado">
+                {title}
+              </h6>
+              <p class="font-inter font-extralight text-gris mb-3">
+                {description}
+              </p>
+              <picture>
+                <img
+                  class="object-cover w-full h-80"
+                  src={`${baseUrl}${image[0].url}`}
+                  alt={`Cover of ${title}`}
+                />
+              </picture>
+            </div>
           </div>
-        </div>
-      ))
+        )
+      )
     }
   </div>
 
