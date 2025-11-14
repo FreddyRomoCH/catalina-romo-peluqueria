@@ -1,30 +1,16 @@
 ---
-const SERVICIOS = [
-  {
-    title: "Corte de Cabello",
-    img: "/icons/haircutting.png",
-    alt: "Corte de Cabello",
-    description: "Descripción del servicio",
-  },
-  {
-    title: "Teñido de Cabello",
-    img: "/icons/hair-care.png",
-    alt: "Tinte de Cabello",
-    description: "Descripción del servicio",
-  },
-  {
-    title: "Manicure",
-    img: "/icons/manicure.png",
-    alt: "Manicure",
-    description: "Descripción del servicio",
-  },
-  {
-    title: "Maquillaje",
-    img: "/icons/makeover.png",
-    alt: "Maquillaje",
-    description: "Descripción del servicio",
-  },
-];
+interface ServicesTypes {
+  icon: IconType;
+  description: string;
+  title: string;
+}
+
+interface IconType {
+  url: string;
+}
+
+const { homePageServicios, baseUrl } = Astro.props;
+const services = homePageServicios.section[0].servicio;
 ---
 
 <section id="servicios" class="max-w-7xl m-auto mb-12">
@@ -34,19 +20,20 @@ const SERVICIOS = [
     class="flex mt-5 md:grid md:grid-cols-2 gap-1 snap-x snap-mandatory overflow-x-auto bg-principal"
   >
     {
-      SERVICIOS.map(({ img, alt, description, title }) => (
-        <div class="flex-none md:flex md:flex-row md:aspect-[2/1] box-border mx-3 last:mb-0 md:m-0 snap-center md:snap-none w-[80%] md:w-full border-2 border-dorado">
-          <div class="md:col-span-1 flex flex-col justify-center items-center aspect-square bg-principal">
-            <img class="w-36" src={img} alt={alt} />
+      services &&
+        services.map(({ icon, description, title }: ServicesTypes) => (
+          <div class="flex-none md:flex md:flex-row md:aspect-[2/1] box-border mx-3 last:mb-0 md:m-0 snap-center md:snap-none w-[80%] md:w-full border-2 border-dorado">
+            <div class="md:col-span-1 flex flex-col justify-center items-center aspect-square bg-principal">
+              <img class="w-36" src={`${baseUrl}${icon.url}`} alt={title} />
+            </div>
+            <div class="md:col-span-1 flex flex-col justify-center items-center gap-3 aspect-square bg-principal">
+              <h3 class="font-playfair text-xl font-semibold tracking-wider text-dorado">
+                {title}
+              </h3>
+              <p class="font-inter font-thin text-gris">{description}</p>
+            </div>
           </div>
-          <div class="md:col-span-1 flex flex-col justify-center items-center gap-3 aspect-square bg-principal">
-            <h3 class="font-playfair text-xl font-semibold tracking-wider text-dorado">
-              {title}
-            </h3>
-            <p class="font-inter font-thin text-gris">{description}</p>
-          </div>
-        </div>
-      ))
+        ))
     }
   </div>
 </section>
